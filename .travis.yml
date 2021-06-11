@@ -1,23 +1,14 @@
 sudo: required
-
 services:
-  - docker
-
+- docker
 language: python
-
 python:
-  - '3.6'
-
+- '3.6'
 install:
-  - pip install -e .[all-tests]
-
+- pip install -e .[all-tests]
+before_script:
+- bash test_mypy.sh
+before_install:
+- openssl aes-256-cbc -K $MY_KEY -iv $MY_IV -in root_key.enc -out root_key -d
 script:
-  - pytest
-
-notifications:
-  webhooks:
-    urls:
-      - https://webhooks.gitter.im/e/5d585e560cb2e7b4fe45
-    on_success: change
-    on_failure: always
-    on_start: never
+- echo "SCRIPT SECTION"
